@@ -1,13 +1,11 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 
-const client = new ApolloClient({
+const serviceApolloClient = new ApolloClient({
   uri: process.env.NEXT_PUBLIC_API_URL,
   cache: new InMemoryCache(),
+  headers: {
+    authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_API_TOKEN}`,
+  },
 });
 
-export default client;
+export default serviceApolloClient;
