@@ -5,7 +5,11 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
 };
 
-const Input: React.FC<InputProps> = ({ children, className, ...props }) => {
+const InputComponent: React.FC<InputProps> = ({
+  children,
+  className,
+  ...props
+}) => {
   return (
     <input
       {...props}
@@ -20,4 +24,4 @@ const Input: React.FC<InputProps> = ({ children, className, ...props }) => {
   );
 };
 
-export default Input;
+export default InputComponent;

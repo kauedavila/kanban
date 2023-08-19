@@ -1,34 +1,29 @@
 "use client";
 import { useEffect, useState } from "react";
 import Button from "./button";
-import Input from "./input";
+import InputComponent from "./inputComponent";
 
-type TaskListProps = {
-  tasklistName?: string;
-};
-
-const TaskList = ({ tasklistName = "Lista de tarefas" }: TaskListProps) => {
+const TaskList = ({
+  taskID,
+  taskListName,
+  tasks,
+}: {
+  taskID?: string;
+  taskListName?: string;
+  tasks?: {
+    id: string;
+    attributes: {
+      Name: string;
+    };
+  }[];
+}) => {
   const [addingTask, setAddingTask] = useState(false);
-  const [taskList, setTaskList] = useState<string[]>([]);
-
-  useEffect(() => {
-    const tasklistNameElement = document.getElementById("tasklistName");
-    if (tasklistNameElement) {
-      tasklistNameElement.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          tasklistNameElement.blur();
-        }
-      });
-    }
-  }, []);
 
   const handleAddTask = () => {
     const input = document.getElementById("task input") as HTMLInputElement;
     if (input) {
       const task = input.value;
       if (task) {
-        setTaskList([...taskList, task]);
         setAddingTask(false);
         input.value = "";
       }
@@ -38,17 +33,17 @@ const TaskList = ({ tasklistName = "Lista de tarefas" }: TaskListProps) => {
   return (
     <div className="bg-gray-100 flex flex-col shadow-md rounded-md p-4 w-96 shrink-0  gap-2 box-border min-h-[125px] h-full">
       <div className="flex items-center justify-between w-full">
-        <Input
+        <InputComponent
           id="tasklistName"
           type="text"
           autoComplete="off"
           className="cursor-pointer focus:cursor-text"
-          defaultValue={tasklistName}
+          defaultValue={taskListName}
         />
         <p className="ml-2">...</p>
       </div>
 
-      {taskList.map((task, k) => (
+      {tasks?.map((task, k) => (
         <div
           key={k}
           className="bg-white flex flex-col 
@@ -57,12 +52,12 @@ const TaskList = ({ tasklistName = "Lista de tarefas" }: TaskListProps) => {
         cursor-pointer select-none
        "
         >
-          <p>{task}</p>
+          <p>{task.attributes.Name}</p>
         </div>
       ))}
       {addingTask ? (
         <div>
-          <Input
+          <InputComponent
             id="task input"
             className="px-4 py-4 "
             autoFocus
