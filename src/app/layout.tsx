@@ -1,5 +1,8 @@
+"use client";
 import "src/styles/globals.css";
 import { Inter } from "next/font/google";
+import { ApolloProvider } from "@apollo/client";
+import serviceApolloClient from "@/services/apolloClient";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ApolloProvider client={serviceApolloClient}>{children}</ApolloProvider>
+      </body>
     </html>
   );
 }
