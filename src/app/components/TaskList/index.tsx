@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import InputComponent from "./inputComponent";
-import AddTask from "./addtask";
+import AddTask from "./addTask";
 
 type TaskListProps = {
-  taskID?: string;
-  taskListName?: string;
+  taskListID: string;
+  taskListName: string;
   tasks?: {
     id: string;
     attributes: {
@@ -15,7 +15,7 @@ type TaskListProps = {
   }[];
 };
 
-const TaskList = ({ taskID, taskListName, tasks }: TaskListProps) => {
+const TaskList = ({ taskListID, taskListName, tasks }: TaskListProps) => {
   const [addingTask, setAddingTask] = useState(false);
 
   return (
@@ -43,7 +43,12 @@ const TaskList = ({ taskID, taskListName, tasks }: TaskListProps) => {
           <p>{task.attributes.Name}</p>
         </div>
       ))}
-      <AddTask addingTask={addingTask} setAddingTask={setAddingTask} />
+      <AddTask
+        addingTask={addingTask}
+        setAddingTask={setAddingTask}
+        taskListID={taskListID}
+        taskListName={taskListName}
+      />
     </div>
   );
 };

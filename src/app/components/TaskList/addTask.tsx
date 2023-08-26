@@ -1,19 +1,56 @@
+import { useMutation } from "@apollo/client";
 import Button from "./button";
 import InputComponent from "./inputComponent";
+import UpdateTaskRelation from "@/services/updateTaskRelations";
+import { CREATE_TASK } from "@/services/createTask";
+import UpdateTaskListRelations from "@/services/updateTaskListRelations";
 
 type AddTaskProps = {
   addingTask: boolean;
   setAddingTask: (value: boolean) => void;
+  taskListID: string;
+  taskListName: string;
 };
 
-const AddTask = ({ addingTask, setAddingTask }: AddTaskProps) => {
-  const handleAddTask = () => {
+const AddTask = ({
+  addingTask,
+  setAddingTask,
+  taskListID,
+  taskListName,
+}: AddTaskProps) => {
+  const [createTask] = useMutation(CREATE_TASK, {
+    refetchQueries: ["GetTaskLists"],
+  });
+
+  const handleAddTask = async () => {
     const input = document.getElementById("task input") as HTMLInputElement;
     if (input) {
       const task = input.value;
-      if (task) {
+
+      try {
+        const res = await createTask({
+          variables: {
+            name: task,
+            publishedAt: new Date().toISOString(),
+          },
+        });
+
+        const taskID = res.data.createTask.data.id as string;
+
+        await UpdateTaskRelation({
+          taskID,
+          taskListID,
+        });
+
+        await UpdateTaskListRelations({
+          taskID,
+          taskListID,
+        });
+
         setAddingTask(false);
         input.value = "";
+      } catch (err) {
+        console.log(err);
       }
     }
   };
@@ -29,8 +66,8 @@ const AddTask = ({ addingTask, setAddingTask }: AddTaskProps) => {
             placeholder="Insira um título para este cartão..."
           />
           <div className="flex items-center justify-center w-full gap-4">
-            <Button onClick={() => handleAddTask()}>Adicionar cartão</Button>
-            <Button onClick={() => setAddingTask(false)}>Cancelar</Button>
+            <Button onClick={() => handleAddTask()}>Add task</Button>
+            <Button onClick={() => setAddingTask(false)}>Cancel</Button>
           </div>
         </div>
       ) : (

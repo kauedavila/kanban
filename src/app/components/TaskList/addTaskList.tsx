@@ -13,12 +13,9 @@ const CREATE_TASK_LIST = gql`
 `;
 
 const AddTaskList = () => {
-  const [createTaskList, { data, loading, error }] = useMutation(
-    CREATE_TASK_LIST,
-    {
-      refetchQueries: ["GetTaskLists"],
-    }
-  );
+  const [createTaskList] = useMutation(CREATE_TASK_LIST, {
+    refetchQueries: ["GetTaskLists"],
+  });
 
   return (
     <button

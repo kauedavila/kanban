@@ -43,7 +43,7 @@ export default function Home() {
           {taskLists?.map((taskList, k) => (
             <TaskList
               key={k}
-              taskID={taskList.id}
+              taskListID={taskList.id}
               taskListName={taskList.attributes.Name}
               tasks={taskList.attributes.tasks?.data}
             />
