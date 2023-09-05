@@ -12,6 +12,7 @@ const UpdateTaskRelation = async ({
     {
       method: "put",
       body: JSON.stringify({
+        id: taskID,
         data: {
           task_list: {
             connect: [
