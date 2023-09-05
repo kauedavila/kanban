@@ -22,7 +22,7 @@ type TaskListStateProps = {
 }[];
 
 export default function Home() {
-  const { data, loading } = useQuery(GET_TASK_LISTS);
+  const { data, loading, refetch } = useQuery(GET_TASK_LISTS);
   const [taskLists, setTaskLists] = useState<TaskListStateProps>([]);
 
   useEffect(() => {
@@ -43,6 +43,7 @@ export default function Home() {
           {taskLists?.map((taskList, k) => (
             <TaskList
               key={k}
+              refetchTaskList={refetch}
               taskListID={taskList.id}
               taskListName={taskList.attributes.Name}
               tasks={taskList.attributes.tasks?.data}

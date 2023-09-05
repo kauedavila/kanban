@@ -1,4 +1,8 @@
-import { useMutation } from "@apollo/client";
+import {
+  ApolloQueryResult,
+  OperationVariables,
+  useMutation,
+} from "@apollo/client";
 import Button from "./button";
 import InputComponent from "./inputComponent";
 import UpdateTaskRelation from "@/services/updateTaskRelations";
@@ -9,18 +13,18 @@ type AddTaskProps = {
   addingTask: boolean;
   setAddingTask: (value: boolean) => void;
   taskListID: string;
-  taskListName: string;
+  refetchTaskList?: (
+    variables?: Partial<OperationVariables> | undefined
+  ) => Promise<ApolloQueryResult<any>>;
 };
 
 const AddTask = ({
   addingTask,
   setAddingTask,
   taskListID,
-  taskListName,
+  refetchTaskList,
 }: AddTaskProps) => {
-  const [createTask] = useMutation(CREATE_TASK, {
-    refetchQueries: ["GetTaskLists"],
-  });
+  const [createTask] = useMutation(CREATE_TASK);
 
   const handleAddTask = async () => {
     const input = document.getElementById("task input") as HTMLInputElement;
@@ -45,6 +49,10 @@ const AddTask = ({
         await UpdateTaskListRelations({
           taskID,
           taskListID,
+        }).then(() => {
+          if (refetchTaskList) {
+            refetchTaskList();
+          }
         });
 
         setAddingTask(false);
