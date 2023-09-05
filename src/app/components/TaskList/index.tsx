@@ -42,7 +42,7 @@ const TaskList = ({
           autoComplete="off"
           className="cursor-pointer focus:cursor-text"
           defaultValue={taskListName}
-          onChange={async (e) => {
+          onBlur={async (e) => {
             const newName = e.target.value;
             try {
               await renameTaskList({
@@ -50,12 +50,17 @@ const TaskList = ({
                   id: taskListID,
                   name: newName,
                 },
+              }).then(() => {
+                if (refetchTaskList) {
+                  refetchTaskList();
+                }
               });
             } catch (err) {
               console.log(err);
             }
           }}
         />
+
         <p className="ml-2">...</p>
       </div>
 
