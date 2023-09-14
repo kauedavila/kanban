@@ -72,7 +72,9 @@ const AddTask = ({
             className="px-4 py-4 "
             autoFocus
             placeholder="Insira um título para este cartão..."
-            onBlur={() => (setAddingTask(false), handleAddTask())}
+            onBlur={(e) =>
+              e.target.value === "" ? setAddingTask(false) : handleAddTask()
+            }
           />
           <div className="flex items-center justify-center w-full gap-4">
             <Button onClick={() => handleAddTask()}>Add task</Button>
