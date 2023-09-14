@@ -71,7 +71,7 @@ const AddTask = ({
             id="task input"
             className="px-4 py-4 "
             autoFocus
-            placeholder="Insira um título para este cartão..."
+            placeholder="Insert a title for this task..."
             onBlur={(e) =>
               e.target.value === "" ? setAddingTask(false) : handleAddTask()
             }
