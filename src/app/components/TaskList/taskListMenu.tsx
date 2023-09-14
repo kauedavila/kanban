@@ -21,13 +21,13 @@ const TaskListMenu = ({
     },
   ];
 
-  const [deleteTask] = useMutation(DELETE_TASK_LIST);
+  const [deleteTaskList] = useMutation(DELETE_TASK_LIST);
 
   const handleDeleteTaskList = async () => {
     if (confirm("Are you sure you want to delete this list?") === false) return;
 
     try {
-      await deleteTask({
+      await deleteTaskList({
         variables: {
           id: taskListID,
         },
