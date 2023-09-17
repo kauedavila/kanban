@@ -10,6 +10,7 @@ import {
 } from "@apollo/client";
 import { RENAME_TASK_LIST } from "@/services/renameTaskList";
 import TaskListMenu from "./taskListMenu";
+import Task from "../Task";
 
 type TaskListProps = {
   taskListID: string;
@@ -84,16 +85,7 @@ const TaskList = ({
       </div>
 
       {tasks?.map((task, k) => (
-        <div
-          key={k}
-          className="bg-white flex flex-col 
-        shadow-md rounded-md p-4 w-full box-border
-        hover:bg-gray-200 transition duration-200 ease-in-out
-        cursor-pointer select-none
-       "
-        >
-          <p>{task.attributes.Name}</p>
-        </div>
+        <Task key={k} task={task} />
       ))}
       <AddTask
         addingTask={addingTask}
