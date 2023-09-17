@@ -45,25 +45,33 @@ const TaskListMenu = ({
     <div
       className={`${
         taskListMenuOpen ? "flex" : "hidden"
-      } absolute right-0 top-0 mt-4 mr-4
-      flex-col w-40 h-40 bg-white rounded-md shadow-md  box-border
+      } absolute left-[88%] top-14
+      flex-col w-full bg-white rounded-md shadow-md  box-border
+      py-4 
       `}
     >
       <button
         className="hover:bg-gray-200 transition duration-200 ease-in-out
         rounded-md
         cursor-pointer select-none
-        w-8 h-8 flex  justify-center items-center absolute top-0 right-0
+        w-8 h-8 flex justify-center items-center absolute top-4 right-4
         "
         onClick={() => setTaskListMenuOpen(false)}
       >
         x
       </button>
+      <p
+        className="text-lg font-bold mb-4
+        place-self-center
+        "
+      >
+        List Actions
+      </p>
       {menuItems.map((item, k) => (
         <p
           key={k}
           className="hover:bg-gray-200 transition duration-200 ease-in-out
-          cursor-pointer select-none px-4 w-full
+          cursor-pointer select-none w-full h-8 px-4 flex items-center
           "
           onClick={() => (setTaskListMenuOpen(false), item.action())}
         >
