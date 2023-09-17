@@ -36,7 +36,7 @@ const TaskList = ({
   const [taskListMenuOpen, setTaskListMenuOpen] = useState(false);
 
   return (
-    <div className="relative bg-gray-100 flex flex-col shadow-md rounded-md p-4 w-1/4 shrink-0  gap-2 box-border min-h-[125px] h-full">
+    <div className="relative bg-gray-100 flex flex-col shadow-md rounded-md p-4 w-1/5 shrink-0  gap-2 box-border min-h-[125px] h-full">
       <div className=" flex items-center justify-between w-full">
         <InputComponent
           id="tasklistName"
@@ -69,7 +69,6 @@ const TaskList = ({
         rounded-md
         cursor-pointer select-none
         w-8 h-8 flex  justify-center
-        
         "
           onClick={() => setTaskListMenuOpen(!taskListMenuOpen)}
         >

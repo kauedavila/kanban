@@ -22,7 +22,7 @@ const AddTaskList = () => {
       className="
           bg-gray-400 hover:bg-gray-300 active:bg-gray-200 
           transition duration-100 ease-in-out shrink-0 
-          text-white shadow-md rounded-md p-4 w-1/4 gap-2
+          text-white shadow-md rounded-md p-4 w-1/5 gap-2
           box-border
           min-h-[125px] h-[fit-content]
           "
