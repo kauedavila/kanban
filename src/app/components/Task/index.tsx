@@ -8,15 +8,15 @@ interface TaskProps {
 }
 
 const Task = ({ task }: TaskProps) => {
+  const { Name } = task.attributes;
   return (
     <div
       className="bg-white flex flex-col 
-        shadow-md rounded-md p-4 w-full box-border
+        shadow-md rounded-md px-4 py-2 w-full box-border
         hover:bg-gray-200 transition duration-200 ease-in-out
-        cursor-pointer select-none
-       "
+        cursor-pointer select-none"
     >
-      <p>{task.attributes.Name}</p>
+      <p>{Name}</p>
     </div>
   );
 };

@@ -69,7 +69,7 @@ const AddTask = ({
         <div>
           <InputComponent
             id="task input"
-            className="px-4 py-4
+            className="px-4 py-2
             bg-white ring-2 ring-blue-200
             "
             autoFocus
