@@ -3,28 +3,11 @@
 import { useState } from "react";
 import InputComponent from "./inputComponent";
 import AddTask from "./addTask";
-import {
-  ApolloQueryResult,
-  OperationVariables,
-  useMutation,
-} from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { RENAME_TASK_LIST } from "@/services/renameTaskList";
 import TaskListMenu from "./taskListMenu";
 import Task from "../Task";
-
-type TaskListProps = {
-  taskListID: string;
-  taskListName: string;
-  tasks?: {
-    id: string;
-    attributes: {
-      Name: string;
-    };
-  }[];
-  refetchTaskList?: (
-    variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<any>>;
-};
+import { TaskListProps } from "@/app/types/taskLystTypes";
 
 const TaskList = ({
   taskListID,
@@ -85,7 +68,12 @@ const TaskList = ({
       </div>
 
       {tasks?.map((task, k) => (
-        <Task key={k} task={task} />
+        <Task
+          key={k}
+          task={task}
+          taskListID={taskListID}
+          refetchTaskList={refetchTaskList}
+        />
       ))}
       <AddTask
         addingTask={addingTask}

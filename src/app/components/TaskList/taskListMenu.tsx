@@ -1,12 +1,6 @@
+import { TaskListMenuProps } from "@/app/types/taskLystTypes";
 import { DELETE_TASK_LIST } from "@/services/deleteTaskList";
 import { useMutation } from "@apollo/client";
-
-type TaskListMenuProps = {
-  taskListMenuOpen: boolean;
-  setTaskListMenuOpen: (taskListMenuOpen: boolean) => void;
-  taskListID: string;
-  refetchTaskList?: () => void;
-};
 
 const TaskListMenu = ({
   taskListMenuOpen,

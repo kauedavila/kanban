@@ -8,15 +8,7 @@ import InputComponent from "./inputComponent";
 import UpdateTaskRelation from "@/services/updateTaskRelations";
 import { CREATE_TASK } from "@/services/createTask";
 import UpdateTaskListRelations from "@/services/updateTaskListRelations";
-
-type AddTaskProps = {
-  addingTask: boolean;
-  setAddingTask: (value: boolean) => void;
-  taskListID: string;
-  refetchTaskList?: (
-    variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<any>>;
-};
+import { AddTaskProps } from "@/app/types/tasksTypes";
 
 const AddTask = ({
   addingTask,
