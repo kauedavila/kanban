@@ -15,12 +15,12 @@ export type TaskListMenuProps = {
   taskListMenuOpen: boolean;
   setTaskListMenuOpen: (taskListMenuOpen: boolean) => void;
 } & RefetchTaskListProps &
-  Pick<TaskListProps, "taskListID">;
+  Pick<TaskListProps, "taskListID" | "taskListName">;
 
 export type AddTaskProps = {
   addingTask: boolean;
   setAddingTask: (value: boolean) => void;
-} & TaskListProps &
+} & Pick<TaskListProps, "taskListID"> &
   RefetchTaskListProps;
 
 export type RefetchTaskListProps = {

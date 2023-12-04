@@ -8,7 +8,7 @@ import InputComponent from "./inputComponent";
 import UpdateTaskRelation from "@/services/updateTaskRelations";
 import { CREATE_TASK } from "@/services/createTask";
 import UpdateTaskListRelations from "@/services/updateTaskListRelations";
-import { AddTaskProps } from "@/app/types/tasksTypes";
+import { AddTaskProps } from "@/app/types/taskLystTypes";
 
 const AddTask = ({
   addingTask,

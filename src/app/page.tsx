@@ -36,7 +36,7 @@ export default function Home() {
       ) : (
         <main
           className="
-        flex flex-row p-4 gap-4 h-full
+        flex flex-row p-4 gap-4 h-screen
         flex-nowrap overflow-x-auto
         "
         >
